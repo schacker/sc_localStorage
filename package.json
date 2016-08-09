@@ -1,8 +1,8 @@
 {
   "name": "sc_localstorage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "对localStorage操作基本封装",
-  "main": "index.js",
+  "main": "dist/js/sc_localstorage.js",
   "scripts": {
     "test": "test sclocal"
   },

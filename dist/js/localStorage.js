@@ -33,4 +33,6 @@ this.sProxy.setItem(this.keyCache,JSON.stringify(n))}},buildStorageObj:function(
 //需要验证签名
 return(i=this.sProxy.getItem(e))?(i=JSON.parse(i),i.timeout<r?null:t?t===i.sign?i.value:null:i.value):null}catch(e){console&&console.log(e)}return null},
 //获取签名
-getSign:function(e){var t,i=null;try{t=this.sProxy.getItem(e),t&&(t=JSON.parse(t),i=t&&t.sign)}catch(e){console&&console.log(e)}return i},remove:function(e){return this.sProxy.removeItem(e)},clear:function(){this.sProxy.clear()}};Storage.getInstance=function(){return this.instance?this.instance:this.instance=new this},window.Storage=Storage,module.exports=Storage;
+getSign:function(e){var t,i=null;try{t=this.sProxy.getItem(e),t&&(t=JSON.parse(t),i=t&&t.sign)}catch(e){console&&console.log(e)}return i},remove:function(e){return this.sProxy.removeItem(e)},clear:function(){this.sProxy.clear()}};Storage.getInstance=function(){return this.instance?this.instance:this.instance=new this},
+// window.Storage = Storage;
+module.exports=Storage;
