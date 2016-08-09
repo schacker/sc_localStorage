@@ -1,0 +1,24 @@
+# system ignore
+.DS_Store
+Thumbs.db
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+# eclipse ignore
+.settings/
+.project
+.classpath
+
+# kdiff3 ignore
+*.orig
+# node_modules
+/node_modules

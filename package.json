@@ -1,0 +1,29 @@
+{
+  "name": "sc_localstorage",
+  "version": "1.0.0",
+  "description": "对localStorage操作基本封装",
+  "main": "index.js",
+  "scripts": {
+    "test": "test sclocal"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schacker/sc_localStorage.git"
+  },
+  "keywords": [
+    "html5本地缓存"
+  ],
+  "author": "schacker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/schacker/sc_localStorage/issues"
+  },
+  "homepage": "https://github.com/schacker/sc_localStorage#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-uglify": "^2.0.0",
+    "require": "^2.4.20"
+  },
+  "dependencies": {}
+}
