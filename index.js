@@ -29,17 +29,26 @@ var Storage = (function(){
         sign 为格式化后的请求参数，用于同一请求不同参数时候返回新数据，比如列表为北京的城市，后切换为上海，会判断tag不同而更新缓存数据，tag相当于签名
         每一键值只会缓存一条信息
         */
+        /**
+         * 设置本地缓存
+         * @param {[String]} key     [key值]
+         * @param {[Object|String]} value   [value值]
+         * @param {[String]} timeout [超时时间]
+         * @param {[String]} sign    [签名校验]
+         */
         set: function (key, value, timeout, sign) {
             var _d = new Date();
             //存入日期
             var indate = _d.getTime();
+            this.removeOverdueCache();
             //最终保存的数据
             var entity = null;
             if (!timeout) {
                 _d.setTime(_d.getTime() + this.defaultLifeTime);
                 timeout = _d.getTime();
+            } else {
+                timeout = _d.getTime() + timeout;
             }
-            //
             this.setKeyCache(key, timeout);
             entity = this.buildStorageObj(value, indate, timeout, sign);
 
@@ -71,7 +80,7 @@ var Storage = (function(){
             }
             cacheMap = JSON.parse(cacheStr);
             for (i = 0, len = cacheMap.length; i < len; i++) {
-                tmpObj = cacheMap[i];
+                tmpObj = cacheMap[i] || {};
                 if (tmpObj.timeout < now) {
                     this.sProxy.removeItem(tmpObj.key);
                 } else {
@@ -92,7 +101,7 @@ var Storage = (function(){
             if (!cacheStr) return false;
 
             cacheMap.sort(function (a, b) {
-                return a.timeout - b.timeout;
+                return a.indate - b.indate;
             });
 
             //删除了哪些数据
@@ -120,7 +129,7 @@ var Storage = (function(){
 
             if (oldstr) {
                 oldMap = JSON.parse(oldstr);
-                if (!_.isArray(oldMap)) {
+                if (Object.prototype.toString.call(oldMap) !== '[object Array]') {
                     oldMap = [];
                 }
             }
@@ -149,6 +158,7 @@ var Storage = (function(){
 
         get: function (key, sign) {
             var result, now = new Date().getTime();
+            this.removeOverdueCache();
             try {
                 result = this.sProxy.getItem(key);
                 if (!result) {
@@ -157,8 +167,7 @@ var Storage = (function(){
                 result = JSON.parse(result);
 
                 //数据过期
-                console.log(result, now);
-                if (result.indate < now) {
+                if (result.timeout < now) {
                     return null
                 };
 
