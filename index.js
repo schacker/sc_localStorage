@@ -212,14 +212,5 @@
 			this.sProxy.clear();
 		}
 	};
-
-
-	Storage.prototype.getInstance = function () {
-		if (this.instance) {
-			return this.instance;
-		} else {
-			return this.instance = new this();
-		}
-	};
 	return Storage
 })
