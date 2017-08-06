@@ -1,6 +1,6 @@
 {
   "name": "sc_localstorage",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "对localStorage操作基本封装",
   "main": "index.js",
   "scripts": {
